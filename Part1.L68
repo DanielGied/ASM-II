@@ -1,0 +1,41 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 19/01/2022 15:52:46
+
+00000000                             1  *-----------------------------------------------------------
+00000000                             2  * Title      :
+00000000                             3  * Written by :
+00000000                             4  * Date       :
+00000000                             5  * Description:
+00000000                             6  *-----------------------------------------------------------
+00001000                             7      ORG    $1000
+00001000                             8  START:                  
+00001000                             9  
+00001000  43F9 0000102C             10      LEA text1, A1       ;The effective address is computed and loaded into the address register A1
+00001006  303C 000E                 11      MOVE #14, D0        ;Move number 14 into D0
+0000100A  4E4F                      12      TRAP #15            ;Trap 15 examine instruction at D0 
+0000100C  303C 0004                 13      MOVE #4, D0         ;Move number 4 to D0
+00001010  4E4F                      14      TRAP #15            ;Trap 15 examine instruction at D0
+00001012  31C1 2000                 15      MOVE.W D1, $2000    ;Number entered from keyboard into memory location 2000
+00001016  43F9 00001046             16      LEA text2, A1       ;Load address of text into A1
+0000101C  303C 000E                 17      MOVE #14, D0        ;Move number 14 into D0
+00001020  4E4F                      18      TRAP #15            ;Trap 15 examine instruction at D0 
+00001022  303C 0003                 19      MOVE #3, D0         ;Move number 3 to D0
+00001026  4E4F                      20      TRAP #15            ;Trap 15 examine instruction at D0
+00001028  FFFF FFFF                 21      SIMHALT             
+0000102C                            22  
+0000102C= 45 6E 74 65 72 20 ...     23  text1 dc.b 'Enter your gamer points: ',0
+00001046= 59 6F 75 72 20 67 ...     24  text2 dc.b 'Your gamer points are: ',0
+0000105E                            25  
+0000105E                            26      END    START        
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+START               1000
+TEXT1               102C
+TEXT2               1046
