@@ -1,0 +1,55 @@
+00001000 Starting Address
+Assembler used: EASy68K Editor/Assembler v5.16.01
+Created On: 26/01/2022 15:47:03
+
+00000000                             1  
+00001000                             2      ORG    $1000
+00001000                             3  START:                 
+00001000                             4  
+00001000  43F9 00001052              5      LEA text, A1
+00001006  303C 0002                  6      MOVE.W #2, D0        ;Number 2 in D0
+0000100A  4E4F                       7      TRAP #15             ;Read string from keyboard and store at (A1)
+0000100C                             8      
+0000100C  103C 0005                  9      MOVE.B #5, D0        ;Number 5 in D0
+00001010  4E4F                      10      TRAP #15             ;Read single character from the keyboard into D1.B
+00001012                            11      
+00001012  103C 0008                 12      MOVE.B #8, D0        ;Number 8 in D0
+00001016  4E4F                      13      TRAP #15             ;Return time in hundredths of a second
+00001018                            14      
+00001018  323C 0029                 15      MOVE.W #41, D1
+0000101C  123C 000F                 16      MOVE.B #15, D1
+00001020  103C 000B                 17      MOVE.B #11, D0
+00001024  4E4F                      18      TRAP #15              ;Position the cursor at ROW, COL.
+00001026                            19      
+00001026  103C 000D                 20      MOVE.B #13, D0        ;Number 13 in D0
+0000102A  4E4F                      21      TRAP #15              ;Display the NULL terminated string at (A1)with CR, LF.
+0000102C                            22      
+0000102C  103C 0011                 23      MOVE.B #17, D0        
+00001030  4E4F                      24      TRAP #15              ;Display the NULL terminated string at (A1) and then dispay the deciaml number
+00001032                            25      
+00001032  103C 0012                 26      MOVE.B #18, D0        
+00001036  4E4F                      27      TRAP #15              ;Display the NULL terminated string at (A1) and then read a number from the keyboard
+00001038                            28      
+00001038  223C 00042194             29      MOVE.L #$042194, D1
+0000103E  143C 0005                 30      MOVE.B #%0101, D2
+00001042  103C 0015                 31      MOVE.B #21, D0
+00001046  4E4F                      32      TRAP #15              ;Set font color of D1 and D2
+00001048                            33      
+00001048  103C 000D                 34      MOVE.B #13, D0      ;Number 13 in D0
+0000104C  4E4F                      35      TRAP #15            ;Display string in a1
+0000104E                            36  
+0000104E  FFFF FFFF                 37      SIMHALT            
+00001052                            38  
+00001052= 50 6C 65 61 73 65 ...     39  text dc.b 'Please enter input to keyboard: ' ,0
+00001073                            40  
+00001073                            41      END    START      
+
+No errors detected
+No warnings generated
+
+
+SYMBOL TABLE INFORMATION
+Symbol-name         Value
+-------------------------
+START               1000
+TEXT                1052
